@@ -1,0 +1,19 @@
+#{ require './lib/extree/version.rb'; nil }
+Extree
+===
+
+DSL for building trees
+
+Installation
+---
+```
+gem install extree
+```
+
+Usage
+---
+#[sample/tree.rb]
+
+Authors
+---
+Łukasz Pomietło (oficjalnyadreslukasza@gmail.com)
