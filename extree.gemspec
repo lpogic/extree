@@ -14,6 +14,7 @@ Gem::Specification.new do |s|
   s.license       = "Zlib"
   s.required_ruby_version     = ">= 3.2.2"
   s.metadata = {
-    "documentation_uri" => "https://github.com/lpogic/extree/blob/main/doc/wiki/README.md"
+    "documentation_uri" => "https://github.com/lpogic/extree/blob/main/doc/wiki/README.md",
+    "homepage_uri" => "https://github.com/lpogic/extree"
   }
 end

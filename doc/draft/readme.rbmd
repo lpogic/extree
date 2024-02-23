@@ -1,13 +1,12 @@
-#{ require './lib/extree/version.rb'; nil }
-Extree
+#{ gemspec.name }
 ===
 
-DSL for building trees
+#{ gemspec.summary }
 
 Installation
 ---
 ```
-gem install extree
+gem install #{ gemspec.name }
 ```
 
 Usage
@@ -16,4 +15,4 @@ Usage
 
 Authors
 ---
-Łukasz Pomietło (oficjalnyadreslukasza@gmail.com)
+#{ gemspec.authors.zip(Array(gemspec.email)).map{ "- #{_1} (#{_2})" }.join("\n") }

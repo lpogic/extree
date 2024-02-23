@@ -1,5 +1,4 @@
-
-Extree
+extree
 ===
 
 DSL for building trees
@@ -62,8 +61,23 @@ tree = t! 0 do
 end
 
 p tree
+
+# Output:
+# <0
+#   <1>
+#   <2
+#     <2.1>
+#   >
+#   <3
+#     <3.1
+#       <"3.1.1">
+#     >
+#   >
+#   <4>
+# >
 ```
 
 Authors
 ---
-Łukasz Pomietło (oficjalnyadreslukasza@gmail.com)
+- Łukasz Pomietło (oficjalnyadreslukasza@gmail.com)
+- JAMES ()
