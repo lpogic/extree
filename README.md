@@ -80,4 +80,3 @@ p tree
 Authors
 ---
 - Łukasz Pomietło (oficjalnyadreslukasza@gmail.com)
-- JAMES ()
