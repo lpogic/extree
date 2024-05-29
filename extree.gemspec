@@ -3,9 +3,9 @@ require_relative "./lib/extree/version"
 Gem::Specification.new do |s|
   s.name        = "extree"
   s.version     = Extree::VERSION
-  s.summary     = "DSL for building trees"
-  s.description = <<-EOT
-  
+  s.summary     = "DSL for building various data structures"
+  s.description = <<~EOT
+    XML-like data definition build in ruby code.
   EOT
   s.authors     = ["Łukasz Pomietło"]
   s.email       = "oficjalnyadreslukasza@gmail.com"

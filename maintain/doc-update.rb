@@ -1,3 +1,4 @@
+require 'rebus'
 gemspec = Gem::Specification.load("./#{Dir["*.gemspec"].first}")
 
 def write_file filepath, &b
@@ -13,21 +14,24 @@ def base_dir
   dir.end_with?("maintain") ? File.dirname(dir) : dir
 end
 
-def compile_rbmd input_file, output_file, gemspec
+def compile input_file, output_file, gemspec
+  code = proc do |path|
+    "```RUBY\n" +  File.read("#{base_dir}/#{path}") + "\n```"
+  end
+  sample_index = 1
+  sample = proc do |title, source|
+    result = "### #{sample_index}. #{title}\n#{ code.(source) }\n"
+    sample_index += 1
+    result
+  end
+  base_dir = self.base_dir
+
   write_file output_file do |f|
-    File.foreach input_file do |line|
-      if line =~ /#\[(.*)\]/
-        f << "```RUBY\n"
-        File.foreach "#{base_dir}/#{$1}" do |line|
-          f << line
-        end
-        f << "\n```\n"
-      else
-        f << line.gsub(/\#{.*}/){|group| eval group[2...-1], binding }
-      end
+    Rebus.compile_file input_file do |line|
+      f << line << "\n"
     end
   end
 end
 
-compile_rbmd "#{base_dir}/doc/draft/wiki.rbmd", "#{base_dir}/doc/wiki/README.md", gemspec
-compile_rbmd "#{base_dir}/doc/draft/readme.rbmd", "#{base_dir}/README.md", gemspec
+compile "#{base_dir}/doc/draft/wiki.md.rbs", "#{base_dir}/doc/wiki/README.md", gemspec
+compile "#{base_dir}/doc/draft/readme.md.rbs", "#{base_dir}/README.md", gemspec

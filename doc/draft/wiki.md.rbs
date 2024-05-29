@@ -1,0 +1,13 @@
+Welcome to the _#{ gemspec.name }_ documentation home page!
+===
+
+Installation
+---
+```
+gem install #{ gemspec.name }
+```
+
+Usage
+---
+#{ sample.call "Simple tree building", "sample/tree.rb" }
+#{ sample.call "HTML in Ruby", "sample/html.rb" }

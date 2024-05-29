@@ -3,61 +3,51 @@ require 'extree'
 class Tree
   include Extree
   
-  def initialize value = nil
+  def initialize value = nil, &b
     @value = value
     @nodes = []
+    # sets self as current scope and call given block
+    scope! &b
   end
 
-  # define special scoping method for tree building
-  def! :t do |value, &b|
-    tree = Tree.new(value)
-    @nodes << tree
-    scope! tree, &b
+  # define special scoping method
+  def! :tr do |value = nil, &b|
+    @nodes << Tree.new(value, &b)
   end
 
+  # print the tree in more human readable form
   def inspect depth = 0
     spaces = " " * (depth << 1)
     nodes = @nodes.empty? ? "" : "\n#{@nodes.map{ _1.inspect(depth + 1)}.join("\n")}\n#{spaces}"
-    "#{spaces}<#{@value.inspect}#{nodes}>"
+    "#{spaces}<#{@value}#{nodes}>"
   end
 end
 
-# include Extree & Extree::Branch to prepare main scope method redirection
-include Extree
-include Extree::Branch
-
-def! :t do |value, &b|
-  scope! Tree.new(value), &b
-end
-
-
-
-
-tree = t! 0 do
-  t! 1
-  t! 2 do
-    t! 2.1
+tree = Tree.new do
+  tr! 1
+  tr! 2 do
+    tr! 3
   end
-  t! 3 do
-    t! 3.1 do
-      t! "3.1.1"
+  tr! 4 do
+    tr! 5 do
+      tr! 6
     end
   end
-  t! 4
+  tr! 7
 end
 
 p tree
 
 # Output:
-# <0
+# <
 #   <1>
 #   <2
-#     <2.1>
+#     <3>
 #   >
-#   <3
-#     <3.1
-#       <"3.1.1">
+#   <4
+#     <5
+#       <6>
 #     >
 #   >
-#   <4>
+#   <7>
 # >

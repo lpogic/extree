@@ -59,6 +59,7 @@ module Extree
       raise no_method_error
     end
 
+    # Call method on receiver, ignore call stack
     def send! method, *a, **na, &b
       send "#{BRANCH_METHOD_PREFIX}#{method}", *a, **na, &b
     end

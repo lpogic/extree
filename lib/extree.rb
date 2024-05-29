@@ -1,12 +1,5 @@
-require_relative 'extree/root'
-require_relative 'extree/branch'
+require_relative 'extree/master'
 
-module Extree
-  include Root
-
-  SINGLETON = Object.new
-
-  def self.included(mod)
-    mod.extend Branch
-  end
-end
+include Extree
+extend Extree::Branch
+Seed.open_scope self
